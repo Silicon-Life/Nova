@@ -32,7 +32,7 @@ Todo: Instructions on how to set up the Nova environment, install dependencies, 
 
 To make a contribution or suggest an idea, please fill out this form: [Contribution Form](https://forms.gle/qQjQejX4YuaQaXfTA). Your input is invaluable to us, and we're excited to see where your ideas and contributions will take Nova.
 
-The Discord server will be available soon.
+[Discord server](https://discord.gg/kz2QkJ6N).
 
 ## Citation
 ```
