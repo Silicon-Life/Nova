@@ -34,8 +34,10 @@ To make a contribution or suggest an idea, please fill out this form: [Contribut
 
 * [Discord server](https://discord.gg/kz2QkJ6N)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Silicon-Life/Nova&type=Date)](https://star-history.com/#Silicon-Life/Nova&Date)
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Silicon-Life/Nova&type=Date)](https://star-history.com/#Silicon-Life/Nova&Date)
 
 ## Citation
 ```
