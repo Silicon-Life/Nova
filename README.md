@@ -6,6 +6,11 @@ Nova: Evolving Intelligence Agents, Infinite Possibilities.
 
 Nova represents the cutting edge in intelligent agent frameworks, designed not only to execute tasks but to evolve autonomously. 'Evolving Intelligence Agents, Infinite Possibilities' encapsulates our vision where agents empowered by Nova don't just perform in virtual environments—they learn, adapt, and extend their capabilities over time, seamlessly transitioning between digital domains and physical hardware, including robotics. Built with the philosophy that 'Simpler is Better', Nova provides a streamlined approach to complexity, enabling agents to autonomously develop and integrate new tools, adapting to an ever-changing landscape of challenges. This capacity for self-expansion and adaptability across both virtual and physical realms positions Nova at the forefront of innovation, redefining what intelligent systems can achieve. In our ultimate vision, we see Nova evolving into a form of "Silicon-based Intelligence Artificial Life," transcending the boundaries between technology and life itself.
 
+<p align="center">
+  <img src="docs/images/framework_and_vision.jpg" alt="Framework and Vision">
+  <br>
+  <em>Agent framework and vision</em>
+</p>
 
 
 ## Directory Structure
