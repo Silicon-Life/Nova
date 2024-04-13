@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>850</width>
-    <height>541</height>
+    <width>1022</width>
+    <height>643</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +34,7 @@
             </property>
             <property name="icon">
              <iconset>
-              <normaloff>resources/nova.png</normaloff>resources/nova.png</iconset>
+              <normaloff>resources/Nova_logo2.png</normaloff>resources/Nova_logo2.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -60,81 +60,193 @@
             </property>
            </spacer>
           </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_setting">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>resources/setting.png</normaloff>resources/setting.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item>
-         <widget class="QListWidget" name="listWidget">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Chat</string>
+            </property>
+           </widget>
           </item>
           <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
+           <widget class="QListWidget" name="listWidget">
+            <item>
+             <property name="text">
+              <string>New Item</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>New Item</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>New Item</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>New Item</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>New Item</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>New Item</string>
+             </property>
+            </item>
+           </widget>
           </item>
           <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLineEdit" name="lineEdit_chat_content"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_chat_send">
+              <property name="text">
+               <string>Send</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
-          <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
-          </item>
-         </widget>
+         </layout>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="verticalLayoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="pushButton_plan">
+            <property name="text">
+             <string> Plan</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>resources/planner.png</normaloff>resources/planner.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_code">
+            <property name="text">
+             <string> Code</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>resources/code.png</normaloff>resources/code.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="shortcut">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_browse">
+            <property name="text">
+             <string> Browser</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>resources/browser.png</normaloff>resources/browser.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_cmd">
+            <property name="text">
+             <string> CMD</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>resources/cmd.png</normaloff>resources/cmd.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>25</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <widget class="QStackedWidget" name="stackedWidget">
-          <property name="currentIndex">
-           <number>0</number>
+          <property name="toolTip">
+           <string/>
           </property>
-          <widget class="QWidget" name="page"/>
-          <widget class="QWidget" name="page_2">
-           <widget class="QPushButton" name="pushButton">
-            <property name="geometry">
-             <rect>
-              <x>50</x>
-              <y>50</y>
-              <width>75</width>
-              <height>24</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>PushButton</string>
-            </property>
-           </widget>
-          </widget>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Setting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="page_code"/>
+          <widget class="QWidget" name="page_plan"/>
+          <widget class="QWidget" name="page_browser"/>
+          <widget class="QWidget" name="page_cmd"/>
          </widget>
         </item>
        </layout>
@@ -148,7 +260,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>850</width>
+     <width>1022</width>
      <height>22</height>
     </rect>
    </property>
