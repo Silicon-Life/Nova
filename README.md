@@ -13,7 +13,7 @@ Nova represents the cutting edge in intelligent agent frameworks, designed not o
 </p>
 
 
-## Directory Structure
+## Directory Structure (Todo)
 
 The Nova project is meticulously organized for ease of use and scalability:
 
