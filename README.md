@@ -39,6 +39,8 @@ To make a contribution or suggest an idea, please fill out this form: [Contribut
 
 * [Discord server](https://discord.gg/kz2QkJ6N)
 
+* [Google doc](https://docs.google.com/document/d/160BzNWTrZxHG3YNUVXPx5L3LU4xUh8WlAUss7wBJ3FE/edit?usp=sharing)
+
 
 ## Star History
 
