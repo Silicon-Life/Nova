@@ -1,3 +1,5 @@
+from .node import Node
+
 class CommunicationManager:
     def __init__(self):
         self.nodes = []
