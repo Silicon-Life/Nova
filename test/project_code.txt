@@ -1,0 +1,485 @@
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\README.md
+# NOVA
+
+Nova: Evolving Intelligence Agents, Infinite Possibilities.
+
+## Overview
+
+Nova represents the cutting edge in intelligent agent frameworks, designed not only to execute tasks but to evolve autonomously. 'Evolving Intelligence Agents, Infinite Possibilities' encapsulates our vision where agents empowered by Nova don't just perform in virtual environments—they learn, adapt, and extend their capabilities over time, seamlessly transitioning between digital domains and physical hardware, including robotics. Built with the philosophy that 'Simpler is Better', Nova provides a streamlined approach to complexity, enabling agents to autonomously develop and integrate new tools, adapting to an ever-changing landscape of challenges. This capacity for self-expansion and adaptability across both virtual and physical realms positions Nova at the forefront of innovation, redefining what intelligent systems can achieve. In our ultimate vision, we see Nova evolving into a form of "Silicon-based Intelligence Artificial Life," transcending the boundaries between technology and life itself.
+
+<p align="center">
+  <img src="docs/images/framework_and_vision.jpg" alt="Framework and Vision">
+  <br>
+  <em>Agent framework and vision</em>
+</p>
+
+
+## Directory Structure (Todo)
+
+The Nova project is meticulously organized for ease of use and scalability:
+
+- `nova/`: The main directory housing all the components of Nova.
+  - `core/`: System management.
+  - `agents/`: Contains the agent implementations with `agent.py` serving as a template or a particular instance.
+  - `llm/`: Dedicated to language model functionality, where `llm.py` defines language model-related operations.
+  - `tools/`: A suite of utility scripts to augment the functionality of agents.
+    - `builtins/`: Essential tools that come with the Nova framework.
+    - `plugins/`: Dynamically loaded modules that extend the capabilities of Nova agents.
+- `ui/`: User interface assets that define how users interact with the Nova framework.
+  - `frontend/`: Web ui.
+  - `qt/`:  The graphical user interface components built with PyQt or PySide6 for user interaction.
+
+
+## Getting Started
+
+Todo: Instructions on how to set up the Nova environment, install dependencies, and run the initial configuration.
+
+## Contribution
+
+To make a contribution or suggest an idea, please fill out this form: [Contribution Form](https://forms.gle/qQjQejX4YuaQaXfTA). Your input is invaluable to us, and we're excited to see where your ideas and contributions will take Nova.
+
+* [Discord server](https://discord.gg/tf689k3z)
+
+* [Google doc](https://docs.google.com/document/d/160BzNWTrZxHG3YNUVXPx5L3LU4xUh8WlAUss7wBJ3FE/edit?usp=sharing)
+
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Silicon-Life/Nova&type=Date)](https://star-history.com/#Silicon-Life/Nova&Date)
+
+## Citation
+```
+bibtex
+@misc{universea-nova,
+  title        = {Nova: Evolving Intelligence Agents, Infinite Possibilities},
+  author       = {Nova contributors},
+  year         = {2024},
+  howpublished = {GitHub},
+  url          = {https://github.com/Silicon-Life/Nova}
+}
+```
+
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\agents\agent.py
+import asyncio
+from abc import ABC, abstractmethod
+from typing import Dict, Any, Callable
+
+class Agent(ABC):
+    def __init__(self, name: str, role: str):
+        self.name = name
+        self.role = role
+        self.skills: Dict[str, Callable] = {}
+        self.state: Dict[str, Any] = {}
+        self.communicator = None
+        self.environment = None
+        self.plugins: Dict[str, Any] = {}
+    
+    @abstractmethod
+    async def perceive(self):
+        pass
+
+    @abstractmethod
+    async def decide(self):
+        pass
+
+    @abstractmethod
+    async def act(self):
+        pass
+
+    async def learn(self, feedback: Any):
+        pass
+
+    def communicate(self, message: Any):
+        if self.communicator:
+            self.communicator.send(message)
+
+    def add_skill(self, skill_name: str, skill_func: Callable):
+        self.skills[skill_name] = skill_func
+
+    def use_plugin(self, plugin_name: str, **kwargs):
+        if plugin_name in self.plugins:
+            self.plugins[plugin_name](**kwargs)
+        else:
+            print(f"Plugin {plugin_name} not found.")
+
+    def update_state(self, new_state: Dict[str, Any]):
+        self.state.update(new_state)
+
+    async def run(self):
+        while True:
+            await self.perceive()
+            await self.decide()
+            await self.act()
+            await asyncio.sleep(1)
+
+    def register_plugin(self, plugin_name: str, plugin_func: Callable):
+        self.plugins[plugin_name] = plugin_func
+
+    def setup_communicator(self, communicator: Any):
+        self.communicator = communicator
+
+    def setup_environment(self, environment: Any):
+        self.environment = environment
+
+
+
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\core\task_manager.py
+
+
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\llm\llm.py
+
+
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\tools\builtins\cmd.py
+
+
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\tools\plugins\browse.py
+
+
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\test\read_github.ipynb
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "This script is designed to read a GitHub project and compile all its code files into a single text file. This consolidated file is intended for use with large language models (LLMs) to facilitate reading and understanding the entire project."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "import subprocess\n",
+    "import fnmatch\n",
+    "\n",
+    "def clone_github_repo(github_url, local_dir):\n",
+    "    if os.path.exists(local_dir):\n",
+    "        print(f\"Directory {local_dir} already exists.\")\n",
+    "        return\n",
+    "    subprocess.run([\"git\", \"clone\", github_url, local_dir], check=True)\n",
+    "\n",
+    "def gather_code_files(project_path, output_file):\n",
+    "    code_files = []\n",
+    "    for root, _, files in os.walk(project_path):\n",
+    "        for file in files:\n",
+    "            if fnmatch.fnmatch(file, '*.py') or fnmatch.fnmatch(file, '*.cpp') or fnmatch.fnmatch(file, '*.c') or fnmatch.fnmatch(file, '*.h') or fnmatch.fnmatch(file, '*.java') or fnmatch.fnmatch(file, '*.js') or fnmatch.fnmatch(file, '*.md'):\n",
+    "                file_path = os.path.join(root, file)\n",
+    "                code_files.append(file_path)\n",
+    "\n",
+    "    with open(output_file, 'w', encoding='utf-8') as f:\n",
+    "        for file_path in code_files:\n",
+    "            f.write(f\"File: {file_path}\\n\")\n",
+    "            with open(file_path, 'r', encoding='utf-8', errors='ignore') as code_file:\n",
+    "                f.write(code_file.read())\n",
+    "            f.write(\"\\n\\n\")\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Code files and their contents have been written to project_code.txt\n"
+     ]
+    }
+   ],
+   "source": [
+    "def main():\n",
+    "    choice = '2'\n",
+    "\n",
+    "    if choice == '1':\n",
+    "        github_url = \"https://github.com/Silicon-Life/Nova.git\"\n",
+    "        local_dir = \"temp_repo\"\n",
+    "        clone_github_repo(github_url, local_dir)\n",
+    "        project_path = local_dir\n",
+    "    elif choice == '2':\n",
+    "        project_path = r'C:\\Users\\ps\\Documents\\Academic\\Papers\\Agents\\Nova'\n",
+    "    else:\n",
+    "        print(\"Invalid choice\")\n",
+    "        return\n",
+    "\n",
+    "    output_file = \"project_code.txt\"\n",
+    "    gather_code_files(project_path, output_file)\n",
+    "    print(f\"Code files and their contents have been written to {output_file}\")\n",
+    "\n",
+    "\n",
+    "main()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "nova",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
+
+
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\ui\qt\main_window_ui.py
+# -*- coding: utf-8 -*-
+
+################################################################################
+## Form generated from reading UI file 'main_window.ui'
+##
+## Created by: Qt User Interface Compiler version 6.6.3
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
+    QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
+    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
+    QSplitter, QStackedWidget, QStatusBar, QVBoxLayout,
+    QWidget)
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        if not MainWindow.objectName():
+            MainWindow.setObjectName(u"MainWindow")
+        MainWindow.resize(1022, 643)
+        MainWindow.setAutoFillBackground(False)
+        self.centralwidget = QWidget(MainWindow)
+        self.centralwidget.setObjectName(u"centralwidget")
+        self.gridLayout = QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.splitter = QSplitter(self.centralwidget)
+        self.splitter.setObjectName(u"splitter")
+        self.splitter.setOrientation(Qt.Horizontal)
+        self.horizontalLayoutWidget = QWidget(self.splitter)
+        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
+        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.pushButton_3 = QPushButton(self.horizontalLayoutWidget)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        icon = QIcon()
+        icon.addFile(u"resources/Nova_logo2.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_3.setIcon(icon)
+        self.pushButton_3.setIconSize(QSize(25, 25))
+        self.pushButton_3.setFlat(True)
+
+        self.verticalLayout_2.addWidget(self.pushButton_3)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer)
+
+        self.pushButton_setting = QPushButton(self.horizontalLayoutWidget)
+        self.pushButton_setting.setObjectName(u"pushButton_setting")
+        icon1 = QIcon()
+        icon1.addFile(u"resources/setting.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_setting.setIcon(icon1)
+        self.pushButton_setting.setIconSize(QSize(25, 25))
+        self.pushButton_setting.setFlat(True)
+
+        self.verticalLayout_2.addWidget(self.pushButton_setting)
+
+
+        self.horizontalLayout.addLayout(self.verticalLayout_2)
+
+        self.verticalLayout_3 = QVBoxLayout()
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.label = QLabel(self.horizontalLayoutWidget)
+        self.label.setObjectName(u"label")
+
+        self.verticalLayout_3.addWidget(self.label)
+
+        self.listWidget = QListWidget(self.horizontalLayoutWidget)
+        QListWidgetItem(self.listWidget)
+        QListWidgetItem(self.listWidget)
+        QListWidgetItem(self.listWidget)
+        QListWidgetItem(self.listWidget)
+        QListWidgetItem(self.listWidget)
+        QListWidgetItem(self.listWidget)
+        self.listWidget.setObjectName(u"listWidget")
+
+        self.verticalLayout_3.addWidget(self.listWidget)
+
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.lineEdit_chat_content = QLineEdit(self.horizontalLayoutWidget)
+        self.lineEdit_chat_content.setObjectName(u"lineEdit_chat_content")
+
+        self.horizontalLayout_2.addWidget(self.lineEdit_chat_content)
+
+        self.pushButton_chat_send = QPushButton(self.horizontalLayoutWidget)
+        self.pushButton_chat_send.setObjectName(u"pushButton_chat_send")
+
+        self.horizontalLayout_2.addWidget(self.pushButton_chat_send)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
+
+
+        self.horizontalLayout.addLayout(self.verticalLayout_3)
+
+        self.splitter.addWidget(self.horizontalLayoutWidget)
+        self.verticalLayoutWidget = QWidget(self.splitter)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.pushButton_plan = QPushButton(self.verticalLayoutWidget)
+        self.pushButton_plan.setObjectName(u"pushButton_plan")
+        icon2 = QIcon()
+        icon2.addFile(u"resources/planner.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_plan.setIcon(icon2)
+        self.pushButton_plan.setIconSize(QSize(25, 25))
+        self.pushButton_plan.setFlat(True)
+
+        self.horizontalLayout_3.addWidget(self.pushButton_plan)
+
+        self.pushButton_code = QPushButton(self.verticalLayoutWidget)
+        self.pushButton_code.setObjectName(u"pushButton_code")
+        icon3 = QIcon()
+        icon3.addFile(u"resources/code.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_code.setIcon(icon3)
+        self.pushButton_code.setIconSize(QSize(25, 25))
+        self.pushButton_code.setFlat(True)
+
+        self.horizontalLayout_3.addWidget(self.pushButton_code)
+
+        self.pushButton_browse = QPushButton(self.verticalLayoutWidget)
+        self.pushButton_browse.setObjectName(u"pushButton_browse")
+        icon4 = QIcon()
+        icon4.addFile(u"resources/browser.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_browse.setIcon(icon4)
+        self.pushButton_browse.setIconSize(QSize(25, 25))
+        self.pushButton_browse.setFlat(True)
+
+        self.horizontalLayout_3.addWidget(self.pushButton_browse)
+
+        self.pushButton_cmd = QPushButton(self.verticalLayoutWidget)
+        self.pushButton_cmd.setObjectName(u"pushButton_cmd")
+        icon5 = QIcon()
+        icon5.addFile(u"resources/cmd.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_cmd.setIcon(icon5)
+        self.pushButton_cmd.setIconSize(QSize(25, 25))
+        self.pushButton_cmd.setFlat(True)
+
+        self.horizontalLayout_3.addWidget(self.pushButton_cmd)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
+
+        self.stackedWidget = QStackedWidget(self.verticalLayoutWidget)
+        self.stackedWidget.setObjectName(u"stackedWidget")
+        self.page_code = QWidget()
+        self.page_code.setObjectName(u"page_code")
+        self.stackedWidget.addWidget(self.page_code)
+        self.page_plan = QWidget()
+        self.page_plan.setObjectName(u"page_plan")
+        self.stackedWidget.addWidget(self.page_plan)
+        self.page_browser = QWidget()
+        self.page_browser.setObjectName(u"page_browser")
+        self.stackedWidget.addWidget(self.page_browser)
+        self.page_cmd = QWidget()
+        self.page_cmd.setObjectName(u"page_cmd")
+        self.stackedWidget.addWidget(self.page_cmd)
+
+        self.verticalLayout.addWidget(self.stackedWidget)
+
+        self.splitter.addWidget(self.verticalLayoutWidget)
+
+        self.gridLayout.addWidget(self.splitter, 0, 0, 1, 1)
+
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QMenuBar(MainWindow)
+        self.menubar.setObjectName(u"menubar")
+        self.menubar.setGeometry(QRect(0, 0, 1022, 22))
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QStatusBar(MainWindow)
+        self.statusbar.setObjectName(u"statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+
+        self.stackedWidget.setCurrentIndex(1)
+
+
+        QMetaObject.connectSlotsByName(MainWindow)
+    # setupUi
+
+    def retranslateUi(self, MainWindow):
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Nova", None))
+        self.pushButton_3.setText("")
+        self.pushButton_setting.setText("")
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Chat", None))
+
+        __sortingEnabled = self.listWidget.isSortingEnabled()
+        self.listWidget.setSortingEnabled(False)
+        ___qlistwidgetitem = self.listWidget.item(0)
+        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem1 = self.listWidget.item(1)
+        ___qlistwidgetitem1.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem2 = self.listWidget.item(2)
+        ___qlistwidgetitem2.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem3 = self.listWidget.item(3)
+        ___qlistwidgetitem3.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem4 = self.listWidget.item(4)
+        ___qlistwidgetitem4.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        ___qlistwidgetitem5 = self.listWidget.item(5)
+        ___qlistwidgetitem5.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
+        self.listWidget.setSortingEnabled(__sortingEnabled)
+
+        self.pushButton_chat_send.setText(QCoreApplication.translate("MainWindow", u"Send", None))
+        self.pushButton_plan.setText(QCoreApplication.translate("MainWindow", u" Plan", None))
+        self.pushButton_code.setText(QCoreApplication.translate("MainWindow", u" Code", None))
+#if QT_CONFIG(shortcut)
+        self.pushButton_code.setShortcut("")
+#endif // QT_CONFIG(shortcut)
+        self.pushButton_browse.setText(QCoreApplication.translate("MainWindow", u" Browser", None))
+        self.pushButton_cmd.setText(QCoreApplication.translate("MainWindow", u" CMD", None))
+#if QT_CONFIG(tooltip)
+        self.stackedWidget.setToolTip("")
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(whatsthis)
+        self.stackedWidget.setWhatsThis(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Setting</p></body></html>", None))
+#endif // QT_CONFIG(whatsthis)
+    # retranslateUi
+
+
+
