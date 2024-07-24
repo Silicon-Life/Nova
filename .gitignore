@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# pypi package
+*.whl
+
 # Distribution / packaging
 .Python
 build/
