@@ -117,6 +117,9 @@ class Agent(ABC):
         self.communication_manager = communicator
 
 
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\agents\__init__.py
+
+
 File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\communication\action.py
 class Action:
     def __init__(self, action_name, callback):
@@ -128,6 +131,8 @@ class Action:
 
 
 File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\communication\communication_manager.py
+from .node import Node
+
 class CommunicationManager:
     def __init__(self):
         self.nodes = []
@@ -160,6 +165,10 @@ class CommunicationManager:
 
 File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\communication\node.py
 import asyncio
+from .publisher import Publisher
+from .subscriber import Subscriber
+from .service import Service
+from .action import Action
 
 class Node:
     def __init__(self, name):
@@ -231,10 +240,19 @@ class Subscriber:
         await self.callback(message)
 
 
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\communication\__init__.py
+
+
 File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\core\task_manager.py
 
 
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\core\__init__.py
+
+
 File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\llm\llm.py
+
+
+File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\llm\__init__.py
 
 
 File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\nova\tools\builtins\cmd.py
@@ -258,7 +276,7 @@ File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\test\read_github.ipynb
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": 1,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -301,7 +319,7 @@ File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\test\read_github.ipynb
   },
   {
    "cell_type": "code",
-   "execution_count": 9,
+   "execution_count": 2,
    "metadata": {},
    "outputs": [
     {
@@ -328,6 +346,121 @@ File: C:\Users\ps\Documents\Academic\Papers\Agents\Nova\test\read_github.ipynb
     "        return\n",
     "\n",
     "    output_file = \"project_code.txt\"\n",
+    "    gather_code_files(project_path, output_file)\n",
+    "    print(f\"Code files and their contents have been written to {output_file}\")\n",
+    "\n",
+    "\n",
+    "main()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Code files and their contents have been written to autogen.txt\n"
+     ]
+    }
+   ],
+   "source": [
+    "def main():\n",
+    "    choice = '1'\n",
+    "\n",
+    "    if choice == '1':\n",
+    "        github_url = \"https://github.com/microsoft/autogen.git\"\n",
+    "        local_dir = \"autogen\"\n",
+    "        clone_github_repo(github_url, local_dir)\n",
+    "        project_path = local_dir\n",
+    "    elif choice == '2':\n",
+    "        project_path = r'C:\\Users\\ps\\Documents\\Academic\\Papers\\Agents\\Nova'\n",
+    "    else:\n",
+    "        print(\"Invalid choice\")\n",
+    "        return\n",
+    "\n",
+    "    output_file = \"autogen.txt\"\n",
+    "    gather_code_files(project_path, output_file)\n",
+    "    print(f\"Code files and their contents have been written to {output_file}\")\n",
+    "\n",
+    "\n",
+    "main()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Code files and their contents have been written to MetaGPT.txt\n"
+     ]
+    }
+   ],
+   "source": [
+    "def main():\n",
+    "    choice = '1'\n",
+    "\n",
+    "    if choice == '1':\n",
+    "        github_url = \"https://github.com/geekan/MetaGPT.git\"\n",
+    "        local_dir = \"MetaGPT\"\n",
+    "        clone_github_repo(github_url, local_dir)\n",
+    "        project_path = local_dir\n",
+    "    elif choice == '2':\n",
+    "        project_path = r'C:\\Users\\ps\\Documents\\Academic\\Papers\\Agents\\Nova'\n",
+    "    else:\n",
+    "        print(\"Invalid choice\")\n",
+    "        return\n",
+    "\n",
+    "    output_file = \"MetaGPT.txt\"\n",
+    "    gather_code_files(project_path, output_file)\n",
+    "    print(f\"Code files and their contents have been written to {output_file}\")\n",
+    "\n",
+    "\n",
+    "main()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Code files and their contents have been written to camel.txt\n"
+     ]
+    }
+   ],
+   "source": [
+    "def main():\n",
+    "    choice = '1'\n",
+    "\n",
+    "    if choice == '1':\n",
+    "        github_url = \"https://github.com/camel-ai/camel.git\"\n",
+    "        local_dir = \"camel\"\n",
+    "        clone_github_repo(github_url, local_dir)\n",
+    "        project_path = local_dir\n",
+    "    elif choice == '2':\n",
+    "        project_path = r'C:\\Users\\ps\\Documents\\Academic\\Papers\\Agents\\Nova'\n",
+    "    else:\n",
+    "        print(\"Invalid choice\")\n",
+    "        return\n",
+    "\n",
+    "    output_file = \"camel.txt\"\n",
     "    gather_code_files(project_path, output_file)\n",
     "    print(f\"Code files and their contents have been written to {output_file}\")\n",
     "\n",
